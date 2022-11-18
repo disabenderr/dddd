@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="1.js"></script>
+    </head>
+
+    <textarea id="code">
+
+    </textarea>
+    <button id="run_code" onclick="function();">Run</button>
+    <script>
+        run_code.onclick = function(){
+            var string = document.getElementById('code').value;
+            //alert(string);
+            var http = new XMLHttpRequest();
+            http.open("POST", "http://coliru.stacked-crooked.com/compile", false);
+            http.send(JSON.stringify({ "cmd": "g++ main.cpp && ./a.out", "src": string }));
+            alert(http.response);
+
+        }
+    </script>
+</body>
+</html>
